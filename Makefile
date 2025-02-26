@@ -20,11 +20,12 @@ ASM_OBJ = $(ASM_SRC:.s=.o)
 $(TARGET): $(C_OBJ) $(ASM_OBJ)
 	$(CC) $(LINKOPTS) -o $@ $(addprefix $(OBJDIR)/, $^)
 
-$(C_OBJ): $(C_SRC)
+%.o: %.c
 	mkdir -p $(OBJDIR)
-	$(CC) -I $(INCDIR) $(CCOPTS) -o $(OBJDIR)/$@ $^
+	$(CC) $(CCOPTS) -o $(addprefix $(OBJDIR)/, $@) $<
 
 %.o: %.s
+	mkdir -p $(OBJDIR)
 	$(ASM) $(ASMOPTS) -o $(addprefix $(OBJDIR)/, $@) $<
 
 clean:
