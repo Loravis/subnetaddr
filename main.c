@@ -16,12 +16,14 @@ int main(void) {
 	result = ip_input(&a, &b, &c, &d);
 	if (result != 0) {
 		printf("Error code %d\n", result);
+		return 1;
 	}
 	unsigned char ip_addr_arr[] = {a, b, c, d};
 	printf("Subnetmask: ");
 	result = ip_input(&a, &b, &c, &d);
 	if (result != 0) {
 		printf("Error code %d\n", result);
+		return 1;
 	}
 	unsigned char subnetmask_arr[] = {a, b, c, d};
 
